@@ -1,0 +1,581 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  text-align: center;
+  direction: rtl;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)),
+    url("background.png");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #4b3a2f;
+}
+
+/* ======================
+   דף נחיתה
+====================== */
+
+.center {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 22px;
+  padding: 32px 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  line-height: 1.3;
+  color: #4b3a2f;
+}
+
+.card p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #6a5a4d;
+}
+
+#idInput {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #d8cfc4;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#idInput:focus {
+  border-color: #7c8f6a;
+  box-shadow: 0 0 0 3px rgba(124, 143, 106, 0.15);
+}
+
+.error-message {
+  display: none;
+  width: 100%;
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #ff3b30;
+  text-align: center;
+}
+
+.error-message.show {
+  display: block;
+}
+
+#idInput.input-error {
+  border-color: #ff3b30;
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.12);
+}
+
+.center button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #7c8f6a;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.center button:hover {
+  opacity: 0.94;
+  transform: translateY(-1px);
+}
+
+/* ======================
+   Hero - דף מתנות
+====================== */
+
+.hero {
+  max-width: 760px;
+  margin: 24px auto 18px;
+  padding: 22px 18px 18px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 26px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hero-title {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #2f241c;
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.12),
+    0 0 10px rgba(255, 255, 255, 0.55);
+}
+
+.hero-subtitle {
+  margin: 10px 0 18px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #4f4136;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4);
+}
+
+/* ======================
+   פילטרים
+====================== */
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 10px 14px;
+  background: rgba(124, 143, 106, 0.9);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+}
+
+.tab {
+  width: auto;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.tab.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ======================
+   גריד מתנות
+====================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.gift {
+  display: flex;
+}
+
+.gift-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 18px;
+  padding: 20px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 420px;
+}
+
+.gift-card:hover {
+  background: rgba(235, 235, 235, 0.96);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.16);
+}
+
+.gift-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 16px auto;
+}
+
+.gift-main-image {
+  width: 100%;
+  max-width: 320px;
+  height: 220px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.18));
+}
+
+.gift-card h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  color: #4b3a2f;
+}
+
+.gift-price {
+  margin: 0 0 10px;
+  font-size: 17px;
+  color: #6a5a4d;
+  font-weight: normal;
+}
+
+.gift-short-desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #6a5a4d;
+}
+
+/* ======================
+   תג מבצע / הנחה טקסטואלי
+====================== */
+
+.discount-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #ff6b6b, #ff3b30);
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.gift-card:hover .discount-badge {
+  transform: scale(1.05);
+}
+
+/* ======================
+   תג מבצע כתמונה
+====================== */
+
+.gift-badge-image {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.16));
+  transition: transform 0.2s ease;
+}
+
+.gift-card:hover .gift-badge-image {
+  transform: scale(1.06) rotate(-3deg);
+}
+
+/* ======================
+   מחירים בכרטיסים
+====================== */
+
+.old-price {
+  margin: 0 0 4px;
+  font-size: 15px;
+  color: #8b7c71;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #b25a52;
+}
+
+.sale-price {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #c0392b;
+}
+
+/* ======================
+   BUYME מיוחד
+====================== */
+
+.featured-gift {
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.featured-gift:hover {
+  background: rgba(245, 241, 230, 0.98);
+}
+
+.gift-badge-label {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, #d4af37, #f1d36b);
+  color: #3f3122;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  z-index: 2;
+}
+
+/* ======================
+   דף פריט
+====================== */
+
+.detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+}
+
+.detail-top {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  border: none;
+  background: rgba(124, 143, 106, 0.92);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.back-button:hover {
+  background: rgba(108, 126, 91, 0.96);
+  transform: translateY(-1px);
+}
+
+.detail-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+  padding: 28px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 28px;
+  align-items: center;
+}
+
+.detail-image-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-image {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+}
+
+.detail-text {
+  flex: 1;
+  text-align: right;
+}
+
+.detail-text h1 {
+  margin: 0 0 10px;
+  font-size: 38px;
+  color: #4b3a2f;
+  line-height: 1.2;
+}
+
+.set-number {
+  margin: 0 0 20px;
+  font-size: 17px;
+  color: #7a6a5e;
+}
+
+.detail-description {
+  margin: 0 0 18px;
+  font-size: 17px;
+  line-height: 1.9;
+  color: #5e5046;
+}
+
+.coupon-note {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 243, 205, 0.92);
+  color: #6b4f1d;
+  font-size: 14px;
+  line-height: 1.6;
+  border: 1px solid rgba(214, 174, 68, 0.35);
+}
+
+.detail-size {
+  margin: 0 0 18px;
+  font-size: 16px;
+  color: #4b3a2f;
+  font-weight: 600;
+}
+
+.detail-price {
+  margin: 0 0 18px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #4b3a2f;
+}
+
+.detail-old-price {
+  margin: 0 0 6px;
+  font-size: 18px;
+  color: #8b7c71;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #b25a52;
+}
+
+.detail-sale-price {
+  margin: 0 0 18px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #c0392b;
+}
+
+.order-button {
+  display: inline-block;
+  background: #7c8f6a;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-button:hover {
+  background: #6f815f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+}
+
+/* ======================
+   רספונסיביות
+====================== */
+
+@media (max-width: 900px) {
+  .detail-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail-text {
+    text-align: center;
+  }
+
+  .detail-text h1 {
+    font-size: 30px;
+  }
+
+  .detail-description {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .card h1 {
+    font-size: 28px;
+  }
+
+  .card p {
+    font-size: 15px;
+  }
+
+  .hero {
+    margin: 18px 14px 14px;
+    padding: 18px 14px 14px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .tabs {
+    gap: 8px;
+    padding: 8px 10px;
+  }
+
+  .tab {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .gift-main-image {
+    height: 190px;
+  }
+
+  .gift-card h3 {
+    font-size: 22px;
+  }
+
+  .detail-card {
+    padding: 20px;
+  }
+
+  .detail-image {
+    max-width: 100%;
+  }
+}
