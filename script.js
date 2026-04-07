@@ -1,3 +1,15 @@
+const SITE_EXPIRY_DATE = new Date(2026, 3, 12, 0, 0, 0);
+
+function checkIfSiteExpired() {
+  const now = new Date();
+
+  if (now >= SITE_EXPIRY_DATE) {
+    if (!window.location.pathname.includes("destroyed.html")) {
+      window.location.href = "destroyed.html";
+    }
+  }
+}
+
 function showIdError() {
   const input = document.getElementById("idInput");
   const error = document.getElementById("errorMessage");
@@ -87,8 +99,87 @@ function filterGifts(category, event) {
   shuffleGifts();
 }
 
+function createCountdownWidget() {
+  if (document.getElementById("countdownWidget")) return;
+
+  const widget = document.createElement("div");
+  widget.id = "countdownWidget";
+  widget.className = "countdown-widget";
+
+  widget.innerHTML = `
+    <p class="countdown-title">האתר ישמיד את עצמו בעוד</p>
+    <div class="countdown-time">
+      <div class="countdown-box">
+        <span class="countdown-value" id="countdownDays">00</span>
+        <span class="countdown-label">ימים</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-value" id="countdownHours">00</span>
+        <span class="countdown-label">שעות</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-value" id="countdownMinutes">00</span>
+        <span class="countdown-label">דקות</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-value" id="countdownSeconds">00</span>
+        <span class="countdown-label">שניות</span>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(widget);
+}
+
+function updateCountdownWidget() {
+  const daysEl = document.getElementById("countdownDays");
+  const hoursEl = document.getElementById("countdownHours");
+  const minutesEl = document.getElementById("countdownMinutes");
+  const secondsEl = document.getElementById("countdownSeconds");
+
+  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+  const now = new Date();
+  let diff = SITE_EXPIRY_DATE.getTime() - now.getTime();
+
+  if (diff <= 0) {
+    daysEl.textContent = "00";
+    hoursEl.textContent = "00";
+    minutesEl.textContent = "00";
+    secondsEl.textContent = "00";
+
+    if (!window.location.pathname.includes("destroyed.html")) {
+      window.location.href = "destroyed.html";
+    }
+    return;
+  }
+
+  const oneSecond = 1000;
+  const oneMinute = oneSecond * 60;
+  const oneHour = oneMinute * 60;
+  const oneDay = oneHour * 24;
+
+  const days = Math.floor(diff / oneDay);
+  const hours = Math.floor((diff % oneDay) / oneHour);
+  const minutes = Math.floor((diff % oneHour) / oneMinute);
+  const seconds = Math.floor((diff % oneMinute) / oneSecond);
+
+  daysEl.textContent = String(days).padStart(2, "0");
+  hoursEl.textContent = String(hours).padStart(2, "0");
+  minutesEl.textContent = String(minutes).padStart(2, "0");
+  secondsEl.textContent = String(seconds).padStart(2, "0");
+}
+
+function startCountdownWidget() {
+  createCountdownWidget();
+  updateCountdownWidget();
+  setInterval(updateCountdownWidget, 1000);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  checkIfSiteExpired();
   shuffleGifts();
+  startCountdownWidget();
 
   const input = document.getElementById("idInput");
 
