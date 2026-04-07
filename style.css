@@ -579,3 +579,85 @@ body {
     max-width: 100%;
   }
 }
+
+/* ======================
+   חלונית ספירה לאחור צפה
+====================== */
+
+.countdown-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+  width: 300px;
+  max-width: calc(100vw - 24px);
+  background: rgba(47, 36, 28, 0.94);
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.countdown-title {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #f7e7c1;
+}
+
+.countdown-time {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  direction: ltr;
+}
+
+.countdown-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 6px 8px;
+  text-align: center;
+}
+
+.countdown-value {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.countdown-label {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 600px) {
+  .countdown-widget {
+    width: auto;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 12px 14px;
+  }
+
+  .countdown-title {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .countdown-value {
+    font-size: 20px;
+  }
+
+  .countdown-label {
+    font-size: 10px;
+  }
+}
