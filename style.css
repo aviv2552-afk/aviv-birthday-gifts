@@ -639,25 +639,75 @@ body {
   color: rgba(255, 255, 255, 0.78);
 }
 
+.countdown-close {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: none;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.countdown-close:hover {
+  opacity: 1;
+}
+
+/* ריווח תחתון כדי שהספירה לא תסתיר כפתורים/תוכן */
+body {
+  padding-bottom: 120px;
+}
+
 @media (max-width: 600px) {
+  body {
+    padding-bottom: 150px;
+  }
+
+  .detail-page,
+  .grid,
+  .center {
+    padding-bottom: 140px;
+  }
+
   .countdown-widget {
-    width: auto;
-    left: 12px;
+    width: 260px;
+    max-width: calc(100vw - 24px);
+    left: auto;
     right: 12px;
     bottom: 12px;
-    padding: 12px 14px;
+    padding: 10px 12px;
+    border-radius: 16px;
   }
 
   .countdown-title {
-    font-size: 13px;
+    font-size: 12px;
     margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .countdown-time {
+    gap: 6px;
+  }
+
+  .countdown-box {
+    padding: 8px 4px 6px;
+    border-radius: 10px;
   }
 
   .countdown-value {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .countdown-label {
-    font-size: 10px;
+    font-size: 9px;
+    margin-top: 4px;
+  }
+
+  .countdown-close {
+    display: block;
   }
 }
