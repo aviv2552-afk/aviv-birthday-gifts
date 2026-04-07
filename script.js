@@ -107,6 +107,7 @@ function createCountdownWidget() {
   widget.className = "countdown-widget";
 
   widget.innerHTML = `
+    <button class="countdown-close" onclick="closeCountdown()" aria-label="סגור">×</button>
     <p class="countdown-title">האתר ישמיד את עצמו בעוד</p>
     <div class="countdown-time">
       <div class="countdown-box">
@@ -174,6 +175,13 @@ function startCountdownWidget() {
   createCountdownWidget();
   updateCountdownWidget();
   setInterval(updateCountdownWidget, 1000);
+}
+
+function closeCountdown() {
+  const widget = document.getElementById("countdownWidget");
+  if (widget) {
+    widget.style.display = "none";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
