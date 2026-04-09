@@ -710,9 +710,9 @@ body {
   .countdown-close {
     display: block;
   }
+}
 
-  /* בדף הנחיתה לא מציגים כפתור סגירה לשעון */
+/* בדף הנחיתה לא מציגים כפתור סגירה לשעון */
 .landing-page .countdown-close {
   display: none !important;
-}
 }
