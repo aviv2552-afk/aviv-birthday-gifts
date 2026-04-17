@@ -1,15 +1,5 @@
 const SITE_EXPIRY_DATE = new Date(2026, 3, 12, 0, 0, 0);
 
-function checkIfSiteExpired() {
-  const now = new Date();
-
-  if (now >= SITE_EXPIRY_DATE) {
-    if (!window.location.pathname.includes("destroyed.html")) {
-      window.location.href = "destroyed.html";
-    }
-  }
-}
-
 function showIdError() {
   const input = document.getElementById("idInput");
   const error = document.getElementById("errorMessage");
@@ -106,10 +96,12 @@ function createCountdownWidget() {
   widget.id = "countdownWidget";
   widget.className = "countdown-widget";
 
+  const isLandingPage = document.body.classList.contains("landing-page");
+
   widget.innerHTML = `
-    <button class="countdown-close" onclick="closeCountdown()" aria-label="סגור">×</button>
-    <p class="countdown-title">האתר ישמיד את עצמו בעוד</p>
-    <div class="countdown-time">
+    ${!isLandingPage ? `<button class="countdown-close" onclick="closeCountdown()" aria-label="סגור">×</button>` : ``}
+    <p class="countdown-title" id="countdownTitle">האתר ישמיד את עצמו בעוד</p>
+    <div class="countdown-time" id="countdownTime">
       <div class="countdown-box">
         <span class="countdown-value" id="countdownDays">00</span>
         <span class="countdown-label">ימים</span>
@@ -133,27 +125,28 @@ function createCountdownWidget() {
 }
 
 function updateCountdownWidget() {
+  const titleEl = document.getElementById("countdownTitle");
+  const timeEl = document.getElementById("countdownTime");
   const daysEl = document.getElementById("countdownDays");
   const hoursEl = document.getElementById("countdownHours");
   const minutesEl = document.getElementById("countdownMinutes");
   const secondsEl = document.getElementById("countdownSeconds");
 
-  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+  if (!titleEl || !timeEl || !daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
   const now = new Date();
   let diff = SITE_EXPIRY_DATE.getTime() - now.getTime();
 
   if (diff <= 0) {
+    titleEl.textContent = "הזמן נגמר 😈";
     daysEl.textContent = "00";
     hoursEl.textContent = "00";
     minutesEl.textContent = "00";
     secondsEl.textContent = "00";
-
-    if (!window.location.pathname.includes("destroyed.html")) {
-      window.location.href = "destroyed.html";
-    }
     return;
   }
+
+  titleEl.textContent = "האתר ישמיד את עצמו בעוד";
 
   const oneSecond = 1000;
   const oneMinute = oneSecond * 60;
@@ -185,7 +178,6 @@ function closeCountdown() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  checkIfSiteExpired();
   shuffleGifts();
   startCountdownWidget();
 
